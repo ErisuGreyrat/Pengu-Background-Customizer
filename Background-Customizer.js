@@ -377,6 +377,84 @@ function removeBackground() {
   }
 }
 
+function updatePlaceholderInvitedContainer() {
+  if (!backgroundEnabled) {
+    // If background is disabled, ensure placeholder container is visible
+    const placeholderContainers = document.querySelectorAll(
+      ".placeholder-invited-container"
+    );
+    placeholderContainers.forEach((container) => {
+      if (
+        container.querySelector(
+          'video[src*="/fe/lol-parties/parties-v2/invited-banner.webm"]'
+        )
+      ) {
+        container.style.display = "";
+        debugLog("Restored placeholder invited container visibility");
+      }
+    });
+    return;
+  }
+
+  // If background is enabled, hide placeholder container
+  const placeholderContainers = document.querySelectorAll(
+    ".placeholder-invited-container"
+  );
+  placeholderContainers.forEach((container) => {
+    if (
+      container.querySelector(
+        'video[src*="/fe/lol-parties/parties-v2/invited-banner.webm"]'
+      )
+    ) {
+      container.style.display = "none";
+      debugLog("Hidden placeholder invited container");
+    }
+  });
+}
+
+function setupPlaceholderContainerObserver() {
+  const partiesScreen = document.querySelector(
+    '[data-screen-name="rcp-fe-lol-parties"]'
+  );
+  if (!partiesScreen) {
+    debugLog(
+      "Parties screen not found for placeholder container observer setup"
+    );
+    return;
+  }
+
+  const observer = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      if (mutation.type === "childList") {
+        const placeholderAdded = Array.from(mutation.addedNodes).some(
+          (node) => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              return (
+                node.classList?.contains("placeholder-invited-container") ||
+                node.querySelector?.(".placeholder-invited-container")
+              );
+            }
+            return false;
+          }
+        );
+
+        if (placeholderAdded) {
+          debugLog("Placeholder invited container added to DOM");
+          updatePlaceholderInvitedContainer();
+          break;
+        }
+      }
+    }
+  });
+
+  observer.observe(partiesScreen, {
+    childList: true,
+    subtree: true,
+  });
+
+  debugLog("Placeholder container observer set up");
+}
+
 function checkAndApplyBackground() {
   const viewport = document.getElementById("rcp-fe-viewport-root");
   if (!viewport) return;
@@ -408,8 +486,10 @@ function checkAndApplyBackground() {
 
   if (backgroundEnabled && savedItem && (partiesScreen || persistBackground)) {
     applyBackground(savedItem);
+    updatePlaceholderInvitedContainer();
   } else {
     removeBackground();
+    updatePlaceholderInvitedContainer();
   }
 }
 
@@ -481,6 +561,7 @@ window.addEventListener("load", () => {
   setupActivityCenterObserver();
   setupProfilesMainObserver();
   setupPostgameObserver();
+  setupPlaceholderContainerObserver();
   loadSavedSettings();
 
   debugLog("Debug mode is " + (debugMode ? "enabled" : "disabled"));
@@ -3808,6 +3889,10 @@ document.head.insertAdjacentHTML(
   <style>
     .parties-view .parties-background .uikit-background-switcher {
       opacity: 0 !important;
+    }
+    /* Style added to hide placeholder invited container when background is enabled */
+    .custom-background .placeholder-invited-container video[src*="/fe/lol-parties/parties-v2/invited-banner.webm"] {
+      display: none !important;
     }
   </style>
 `
