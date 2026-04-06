@@ -1220,35 +1220,34 @@ function createShowButton(container) {
   const hoverArea = document.createElement("div");
   hoverArea.id = "client-bg-hover-area";
   hoverArea.style.cssText = `
-      position: absolute;
-      bottom: 0;
-      right: 14em;
-      padding: 0.5em;
-      border-radius: 0px;
-      width: 80px;
-      height: 80px;
-      z-index: 9998;
-      display: flex;
-      justify-content: right;
-  `;
+        position: absolute;
+        top: 40%;
+        left: -70px;
+        width: 250px;
+        height: 20%;
+        z-index: 9998;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
 
   const showButton = document.createElement("button");
   showButton.textContent = "BGC";
   showButton.id = "client-bg-show-button";
   showButton.className = "lol-custom-ui";
   showButton.style.cssText = `
-      padding: 0.5em;
-      z-index: 9999;
-      background: #010a13;
-      border: 2px solid #785a28;
-      border-radius: 0px;
-      color: #cdbe91;
-      font-size: 24px;
-      font-weight: bold;
-      font-family: 'LoL Display', 'BeaufortforLOL', sans-serif;
-      transition: all 0.2s, opacity 0.3s;
-      opacity: 0;
-  `;
+        padding: 8px 16px;
+        z-index: 9999;
+        background: #010a13;
+        border: 1px solid #785a28;
+        color: #cdbe91;
+        border-radius: 2px;
+        font-size: 24px;
+        font-weight: bold;
+        font-family: 'LoL Display', 'BeaufortforLOL', sans-serif;
+        transition: all 0.2s, opacity 0.3s;
+        opacity: 0;
+    `;
 
   hoverArea.addEventListener("mouseenter", () => {
     showButton.style.opacity = "1";
@@ -4934,11 +4933,11 @@ function createClientBackgroundCustomizerUI(container) {
             }
             .client-bg-show-button {
                 opacity: 0;
-                transition: 0s !important;
+                transition: 0.2s !important;
             }
             .client-bg-show-button:hover {
                 opacity: 1;
-                transition: 0s !important;
+                transition: 0.2s !important;
             }
         `;
     document.head.appendChild(styleElement);
