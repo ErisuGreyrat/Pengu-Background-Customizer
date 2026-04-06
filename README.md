@@ -38,7 +38,7 @@ A Pengu Loader plugin to customize the League of Legends client with dynamic bac
 
 ## Usage
 
-- **Open**: In the lobby, hover left to reveal the “BGC” button and click to open the customizer.
+- **Open**: In the lobby, hover over the bottom right corner of the client background to show the “BGC” button and click it.
 - **Choose Background**: Search or filter skins by champion, universe, skinline, or favorites, then select a skin and click “Confirm”.
 - **Add Custom Background**: In the “Custom Background” section, click “ADD CUSTOM BACKGROUND” to upload a JPG, PNG, GIF (≤10MB), or WebM video (≤20MB).
 - **Settings**: Click the cog icon to adjust opacity (0.1–1.0), transition duration (0–5s), centered splash, TFT content, or enable auto-cycling (10–300s intervals).
