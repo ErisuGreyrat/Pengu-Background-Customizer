@@ -1,4 +1,4 @@
-# Background Customizer
+# Background Customizer V2
 
 A Pengu Loader plugin to customize the League of Legends client with dynamic backgrounds. Built by [Erisu](https://github.com/ErisuGreyrat). Best used with my [Acrylic League Theme](https://github.com/ErisuGreyrat/acrylic-league-theme).
 
@@ -16,11 +16,8 @@ A Pengu Loader plugin to customize the League of Legends client with dynamic bac
 ## Installation
 
 1. Install [Pengu Loader](https://github.com/PenguLoader/PenguLoader).
-2. Clone or download this repository:
-   ```bash
-   git clone https://github.com/ErisuGreyrat/Pengu-Background-Customizer.git
-   ```
-   Place `Background-Customizer-V2.js` in your Pengu Loader plugins folder (e.g., `C:\Users\YourName\AppData\Local\Pengu Loader\plugins\`).
+2. Download the latest release: [**Background-Customizer-V2.js**](https://github.com/ErisuGreyrat/Pengu-Background-Customizer/releases)
+   Place it in your Pengu Loader plugins folder (e.g., `C:\Users\YourName\AppData\Local\Pengu Loader\plugins\`).
 3. Optionally, install the [Acrylic League Theme](https://github.com/ErisuGreyrat/acrylic-league-theme):
    ```bash
    git clone https://github.com/ErisuGreyrat/acrylic-league-theme.git
